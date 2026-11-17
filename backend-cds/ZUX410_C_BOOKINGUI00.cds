@@ -1,0 +1,49 @@
+@AbapCatalog.sqlViewName: 'ZUX410BOOKING00'
+@AbapCatalog.compiler.compareFilter: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'bookings'
+
+define view ZUX410_C_BOOKINGUI00 as select from sbook {
+  // sbook
+  key mandt,
+  key carrid,
+  key connid,
+
+  @UI.lineItem.position: 20
+  key fldate,
+
+  key bookid,
+
+  customid,
+  custtype,
+
+  @UI.lineItem.position: 60
+  smoker,
+
+  luggweight,
+  wunit,
+  invoice,
+
+  @UI.lineItem.position: 50
+  class,
+
+  forcuram,
+  forcurkey,
+
+  @UI.lineItem.position: 40
+  loccuram,
+  loccurkey,
+
+  @UI.lineItem.position: 30
+  order_date,
+
+  counter,
+  agencynum,
+  cancelled,
+  reserved,
+
+  @UI.lineItem.position: 10
+  passname,
+  passform,
+  passbirth
+}

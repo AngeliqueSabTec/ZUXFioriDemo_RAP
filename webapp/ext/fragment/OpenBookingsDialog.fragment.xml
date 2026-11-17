@@ -1,0 +1,96 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:unified="sap.ui.unified">
+  <Dialog
+    id="openBookingsDialog"
+    title="{i18n>openBookingsDialogTitle}"
+    contentWidth="28rem"
+    contentHeight="32rem"
+    afterClose="onOpenBookingsDialogAfterClose">
+    <content>
+      <NavContainer id="openBookingsNavContainer">
+
+        <!-- Step 1: pick a date -->
+        <Page id="openBookingsCalendarPage" title="{i18n>openBookingsCalendarTitle}" showNavButton="false" showHeader="false">
+          <content>
+            <VBox class="sapUiContentPadding" alignItems="Center">
+              <unified:Calendar
+                id="openBookingsCalendar"
+                select="onCalendarDateSelected" />
+            </VBox>
+          </content>
+          <footer>
+            <Toolbar>
+              <ToolbarSpacer />
+              <Button text="{i18n>openBookingsCancel}" press="onOpenBookingsCancel" />
+              <Button text="{i18n>openBookingsNext}" type="Emphasized" enabled="{ob>/dateChosen}" press="onNavigateToFlightsPage" />
+            </Toolbar>
+          </footer>
+        </Page>
+
+        <!-- Step 2: list the flights available on that date -->
+        <Page id="openBookingsFlightsPage" title="{i18n>openBookingsFlightsTitle}" showNavButton="true" navButtonPress="onNavigateBack">
+          <content>
+            <List
+              id="openBookingsFlightsList"
+              items="{ob>/flights}"
+              busy="{ob>/busy}"
+              noDataText="{ob>/noFlightsText}">
+              <items>
+                <ObjectListItem
+                  title="{ob>Carrid} {ob>Connid}"
+                  number="{ob>Price} {ob>CurrencyCode}"
+                  type="Active"
+                  press="onFlightItemPress">
+                  <attributes>
+                    <ObjectAttribute text="{ob>Planetype}" />
+                    <ObjectAttribute text="{ob>SeatsAvailableText}" />
+                  </attributes>
+                </ObjectListItem>
+              </items>
+            </List>
+          </content>
+          <footer>
+            <Toolbar>
+              <ToolbarSpacer />
+              <Button text="{i18n>openBookingsCreateNew}" press="onNavigateToCreatePage" />
+            </Toolbar>
+          </footer>
+        </Page>
+
+        <!-- Step 3: no flight for that date -> create a new one -->
+        <Page id="openBookingsCreatePage" title="{i18n>openBookingsCreateTitle}" showNavButton="true" navButtonPress="onNavigateBack">
+          <content>
+            <f:SimpleForm xmlns:f="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout" class="sapUiContentPadding">
+              <f:content>
+                <Label text="{i18n>openBookingsFieldCarrier}" />
+                <Input id="openBookingsCarridInput" value="{ob>/newFlight/Carrid}" maxLength="3" />
+
+                <Label text="{i18n>openBookingsFieldConnection}" />
+                <Input id="openBookingsConnidInput" value="{ob>/newFlight/Connid}" maxLength="4" />
+
+                <Label text="{i18n>openBookingsFieldPlanetype}" />
+                <Input value="{ob>/newFlight/Planetype}" maxLength="10" />
+
+                <Label text="{i18n>openBookingsFieldPrice}" />
+                <Input value="{ob>/newFlight/Price}" type="Number" />
+
+                <Label text="{i18n>openBookingsFieldCurrency}" />
+                <Input value="{ob>/newFlight/CurrencyCode}" maxLength="5" />
+
+                <Label text="{i18n>openBookingsFieldSeatsMax}" />
+                <Input value="{ob>/newFlight/SeatsMax}" type="Number" />
+              </f:content>
+            </f:SimpleForm>
+          </content>
+          <footer>
+            <Toolbar>
+              <ToolbarSpacer />
+              <Button text="{i18n>openBookingsCancel}" press="onOpenBookingsCancel" />
+              <Button text="{i18n>openBookingsSave}" type="Emphasized" busy="{ob>/busy}" press="onSaveNewFlight" />
+            </Toolbar>
+          </footer>
+        </Page>
+
+      </NavContainer>
+    </content>
+  </Dialog>
+</core:FragmentDefinition>

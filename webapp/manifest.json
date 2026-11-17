@@ -73,6 +73,8 @@
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
+                "sap.ui.unified": {},
+                "sap.ui.layout": {},
                 "sap.fe.templates": {}
             }
         },
@@ -139,6 +141,13 @@
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
                                         "type": "ResponsiveTable"
+                                    },
+                                    "actions": {
+                                        "OpenBookings": {
+                                            "press": "zflights4.flights4.ext.controller.ListReportExt.onOpenBookings",
+                                            "text": "{i18n>openBookingsBtn}",
+                                            "requiresSelection": false
+                                        }
                                     }
                                 }
                             }
