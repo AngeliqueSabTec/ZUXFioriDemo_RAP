@@ -1,0 +1,17 @@
+// Behavior Definition : ZUX410_UI_FLIGHTUI00_14  (projection)
+// Synced from Eclipse/ADT on: 2026-11-18
+// Note: Exposes the base BO's applyDiscount action on the projection, so
+//       the "user" entity set in service ZUX410_SB_FLIGHTUI00_14 gets a
+//       real bound action (before this, the Apply Discount button on
+//       "user" had an empty action and did nothing).
+//       Implementation stays in ZBP_UX410_C_FLIGHTUI00_14 (base BO).
+//       Requires "provider contract transactional_query" on the view.
+//       If strict ( 2 ) is not supported on the release, use "strict;".
+
+projection;
+strict ( 2 );
+
+define behavior for ZUX410_UI_FLIGHTUI00_14 alias Flight
+{
+  use action applyDiscount;
+}

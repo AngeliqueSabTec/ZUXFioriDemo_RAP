@@ -10,7 +10,7 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
         {
             appId: 'zflights4.flights4',
             componentId: 'FlightList',
-            contextPath: '/Flight'
+            contextPath: '/user'
         },
         CustomPageDefinitions
     );

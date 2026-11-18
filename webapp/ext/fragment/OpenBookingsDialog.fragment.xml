@@ -36,12 +36,12 @@
               noDataText="{ob>/noFlightsText}">
               <items>
                 <ObjectListItem
-                  title="{ob>Carrid} {ob>Connid}"
-                  number="{ob>Price} {ob>CurrencyCode}"
+                  title="{ob>carrid} {ob>connid}"
+                  number="{ob>price} {ob>currency}"
                   type="Active"
                   press="onFlightItemPress">
                   <attributes>
-                    <ObjectAttribute text="{ob>Planetype}" />
+                    <ObjectAttribute text="{ob>planetype}" />
                     <ObjectAttribute text="{ob>SeatsAvailableText}" />
                   </attributes>
                 </ObjectListItem>

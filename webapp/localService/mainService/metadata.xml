@@ -37,109 +37,439 @@
         <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
     </edmx:Reference>
     <edmx:DataServices>
-        <Schema Namespace="com.sap.gateway.srvd.zui_flight_s4.v0001" Alias="SAP__self">
+        <Schema Namespace="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001" Alias="SAP__self">
             <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
-            <EntityType Name="FlightType">
+            <EntityType Name="userType">
                 <Key>
-                    <PropertyRef Name="Carrid"/>
-                    <PropertyRef Name="Connid"/>
-                    <PropertyRef Name="Fldate"/>
+                    <PropertyRef Name="carrid"/>
+                    <PropertyRef Name="connid"/>
+                    <PropertyRef Name="fldate"/>
                 </Key>
-                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3"/>
-                <Property Name="Connid" Type="Edm.String" Nullable="false" MaxLength="4"/>
-                <Property Name="Fldate" Type="Edm.Date" Nullable="false"/>
-                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
-                <Property Name="CurrencyCode" Type="Edm.String" Nullable="false" MaxLength="5"/>
-                <Property Name="Planetype" Type="Edm.String" Nullable="false" MaxLength="10"/>
-                <Property Name="SeatsMax" Type="Edm.Int32" Nullable="false"/>
-                <Property Name="SeatsOcc" Type="Edm.Int32" Nullable="false"/>
-                <Property Name="SeatsAvailable" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="fldate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="carrname" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="cityfrom" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="cityto" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="planetype" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="price" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
+                <Property Name="DiscountedPriceText" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="DiscountPercent" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="DiscountedPrice" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
+                <Property Name="currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="PriceCriticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="Total" Type="Edm.Decimal" Nullable="false" Precision="25" Scale="2"/>
+                <Property Name="seatsmax" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="url" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="paymentsum" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="variable"/>
+                <Property Name="seatsmax_b" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc_b" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsmax_f" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc_f" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="__EntityControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.EntityControl"/>
+                <Property Name="__FieldControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userControl"/>
+                <Property Name="__OperationControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userOperationControl"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.SAP__Message)" Nullable="false"/>
             </EntityType>
+            <EntityType Name="mainType">
+                <Key>
+                    <PropertyRef Name="carrid"/>
+                    <PropertyRef Name="connid"/>
+                    <PropertyRef Name="fldate"/>
+                </Key>
+                <Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="fldate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="carrname" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="cityfrom" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="cityto" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="planetype" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="price" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
+                <Property Name="DiscountedPrice" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
+                <Property Name="DiscountPercent" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="DiscountedPriceText" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="PriceCriticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="PriceFieldControl" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="Total" Type="Edm.Decimal" Nullable="false" Precision="25" Scale="2"/>
+                <Property Name="seatsmax" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="url" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="paymentsum" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="variable"/>
+                <Property Name="seatsmax_b" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc_b" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsmax_f" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="seatsocc_f" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="__EntityControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.EntityControl"/>
+                <Property Name="__FieldControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainControl"/>
+                <Property Name="__OperationControl" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainOperationControl"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.SAP__Message)" Nullable="false"/>
+            </EntityType>
+            <ComplexType Name="userControl">
+                <Property Name="price" Type="Edm.Byte" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="mainControl">
+                <Property Name="price" Type="Edm.Byte" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="userOperationControl">
+                <Property Name="applyDiscount" Type="Edm.Boolean" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="mainOperationControl">
+                <Property Name="applyDiscount" Type="Edm.Boolean" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="EntityControl">
+                <Property Name="Deletable" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="Updatable" Type="Edm.Boolean" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="SAP__Message">
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false"/>
+                <Property Name="target" Type="Edm.String"/>
+                <Property Name="additionalTargets" Type="Collection(Edm.String)" Nullable="false"/>
+                <Property Name="transition" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="numericSeverity" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="longtextUrl" Type="Edm.String"/>
+            </ComplexType>
+            <Action Name="applyDiscount" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userType" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userType" Nullable="false"/>
+            </Action>
+            <Action Name="applyDiscount" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainType" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainType" Nullable="false"/>
+            </Action>
             <EntityContainer Name="Container">
-                <EntitySet Name="Flight" EntityType="com.sap.gateway.srvd.zui_flight_s4.v0001.FlightType"/>
+                <EntitySet Name="main" EntityType="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainType"/>
+                <EntitySet Name="user" EntityType="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userType"/>
             </EntityContainer>
-            <Annotations Target="SAP__self.FlightType/Carrid">
+            <Annotations Target="SAP__self.userType/carrid">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="Airline"/>
                 <Annotation Term="SAP__common.Heading" String="ID"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Airline Code"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/Connid">
+            <Annotations Target="SAP__self.userType/connid">
                 <Annotation Term="SAP__common.IsDigitSequence"/>
                 <Annotation Term="SAP__common.Label" String="Connection Number"/>
                 <Annotation Term="SAP__common.Heading" String="No."/>
                 <Annotation Term="SAP__common.QuickInfo" String="Flight Connection Number"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/Price">
-                <Annotation Term="SAP__measures.ISOCurrency" Path="CurrencyCode"/>
-                <Annotation Term="SAP__common.Label" String="Airfare"/>
+            <Annotations Target="SAP__self.userType/cityfrom">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Depart. city"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Departure city"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/Planetype">
+            <Annotations Target="SAP__self.userType/cityto">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Arrival city"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/planetype">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="Plane Type"/>
                 <Annotation Term="SAP__common.Heading" String="Plane"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Aircraft Type"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType">
-                <Annotation Term="SAP__common.Label" String="Session 4 - Flight Consumption View"/>
+            <Annotations Target="SAP__self.userType/price">
+                <Annotation Term="SAP__common.FieldControl" Path="__FieldControl/price"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__common.Label" String="Airfare"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/DiscountedPriceText">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/DiscountPercent">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/DiscountedPrice">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Airfare"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/Total">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/paymentsum">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__common.Label" String="Booking total"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Total of current bookings"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/__EntityControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/__FieldControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/__OperationControl">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.applyDiscount(SAP__self.userType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/applyDiscount"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType">
+                <Annotation Term="SAP__common.Label" String="Projection View"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Pricing"/>
+                            <PropertyValue Property="ID" String="pricing"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#pricing"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Seat Capacity"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatdata"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Seat Occupancy"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatdata2"/>
+                        </Record>
+                        <Record Type="SAP__UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Seatsinfo 1"/>
+                            <PropertyValue Property="ID" String="seat1"/>
+                            <PropertyValue Property="Facets">
+                                <Collection/>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="SAP__UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Seatsinfo 2"/>
+                            <PropertyValue Property="ID" String="seat2"/>
+                            <PropertyValue Property="Facets">
+                                <Collection/>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#flightinfo"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatinfo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="flightinfo">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="cityfrom"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="cityto"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="url"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="pricing">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Label" String="Original Price"/>
+                                    <PropertyValue Property="Criticality" Path="PriceCriticality"/>
+                                    <PropertyValue Property="Value" Path="price"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Label" String="Discounted Price"/>
+                                    <PropertyValue Property="Value" Path="DiscountedPriceText"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Label" String="Discount %"/>
+                                    <PropertyValue Property="Value" Path="DiscountPercent"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatdata">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax_b"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax_f"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatdata2">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc_f"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc_b"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatinfo">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Flight"/>
+                        <PropertyValue Property="TypeNamePlural" String="Flights"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="carrid"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="carrname"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="carrname"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="fldate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityfrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityto"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="planetype"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Apply Discount"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.applyDiscount(com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.userType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="SAP__UI.LineItem">
                     <Collection>
                         <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Label" String="Price"/>
-                            <PropertyValue Property="Value" Path="Price"/>
+                            <PropertyValue Property="Value" Path="carrid"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="connid"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="fldate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="carrname"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="planetype"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Original Price"/>
+                            <PropertyValue Property="Criticality" Path="PriceCriticality"/>
+                            <PropertyValue Property="Value" Path="price"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Discounted Price"/>
+                            <PropertyValue Property="Value" Path="DiscountedPriceText"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityfrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityto"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Total"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldWithIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" String="Airline"/>
+                            <PropertyValue Property="Action" String="displayFactSheet"/>
+                            <PropertyValue Property="Value" Path="carrname"/>
                         </Record>
                     </Collection>
                 </Annotation>
                 <Annotation Term="SAP__UI.SelectionFields">
                     <Collection>
-                        <PropertyPath>Carrid</PropertyPath>
-                        <PropertyPath>Connid</PropertyPath>
+                        <PropertyPath>carrname</PropertyPath>
+                        <PropertyPath>cityfrom</PropertyPath>
+                        <PropertyPath>cityto</PropertyPath>
                     </Collection>
                 </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
             </Annotations>
-            <Annotations Target="SAP__self.Container/Flight">
+            <Annotations Target="SAP__self.Container/user">
                 <Annotation Term="SAP__capabilities.SearchRestrictions">
                     <Record>
-                        <PropertyValue Property="Searchable" Bool="false"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="SAP__capabilities.InsertRestrictions">
-                    <Record>
-                        <PropertyValue Property="Insertable" Bool="false"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="SAP__capabilities.DeleteRestrictions">
-                    <Record>
-                        <PropertyValue Property="Deletable" Bool="false"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="SAP__capabilities.UpdateRestrictions">
-                    <Record>
-                        <PropertyValue Property="Updatable" Bool="false"/>
-                        <PropertyValue Property="QueryOptions">
-                            <Record>
-                                <PropertyValue Property="SelectSupported" Bool="true"/>
-                            </Record>
-                        </PropertyValue>
+                        <PropertyValue Property="Searchable" Bool="true"/>
+                        <PropertyValue Property="UnsupportedExpressions" EnumMember="SAP__capabilities.SearchExpressions/AND SAP__capabilities.SearchExpressions/OR SAP__capabilities.SearchExpressions/NOT SAP__capabilities.SearchExpressions/group SAP__capabilities.SearchExpressions/phrase"/>
                     </Record>
                 </Annotation>
                 <Annotation Term="SAP__capabilities.FilterRestrictions">
                     <Record>
-                        <PropertyValue Property="FilterExpressionRestrictions">
+                        <PropertyValue Property="NonFilterableProperties">
                             <Collection>
-                                <Record>
-                                    <PropertyValue Property="Property" PropertyPath="Carrid"/>
-                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
-                                </Record>
-                                <Record>
-                                    <PropertyValue Property="Property" PropertyPath="Price"/>
-                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
-                                </Record>
-                                <Record>
-                                    <PropertyValue Property="Property" PropertyPath="Planetype"/>
-                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
-                                </Record>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                                <PropertyPath>__FieldControl</PropertyPath>
+                                <PropertyPath>__OperationControl</PropertyPath>
                             </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                                <PropertyPath>__FieldControl</PropertyPath>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Path="__EntityControl/Deletable"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Path="__EntityControl/Updatable"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
                         </PropertyValue>
                     </Record>
                 </Annotation>
@@ -182,25 +512,411 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/Fldate">
+            <Annotations Target="SAP__self.mainType/carrid">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Airline"/>
+                <Annotation Term="SAP__common.Heading" String="ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Airline Code"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/connid">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Connection Number"/>
+                <Annotation Term="SAP__common.Heading" String="No."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Flight Connection Number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/cityfrom">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Depart. city"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Departure city"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/cityto">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Arrival city"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/planetype">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Plane Type"/>
+                <Annotation Term="SAP__common.Heading" String="Plane"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Aircraft Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/price">
+                <Annotation Term="SAP__common.FieldControl" Path="__FieldControl/price"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__common.Label" String="Airfare"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/DiscountedPrice">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__common.Label" String="Airfare"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/DiscountPercent">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/DiscountedPriceText">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/Total">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/paymentsum">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="currency"/>
+                <Annotation Term="SAP__common.Label" String="Booking total"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Total of current bookings"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/__EntityControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/__FieldControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/__OperationControl">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.applyDiscount(SAP__self.mainType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/applyDiscount"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType">
+                <Annotation Term="SAP__common.Label" String="UX410 Flight UI"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatdata"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatdata2"/>
+                        </Record>
+                        <Record Type="SAP__UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Seatsinfo 1"/>
+                            <PropertyValue Property="ID" String="seat1"/>
+                            <PropertyValue Property="Facets">
+                                <Collection/>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="SAP__UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Seatsinfo 2"/>
+                            <PropertyValue Property="ID" String="seat2"/>
+                            <PropertyValue Property="Facets">
+                                <Collection/>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#flightinfo"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#seatinfo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="flightinfo">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="cityfrom"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="cityto"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="url"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatdata">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax_b"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax_f"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatdata2">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc_f"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc_b"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="seatinfo">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsmax"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="seatsocc"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Flight"/>
+                        <PropertyValue Property="TypeNamePlural" String="Flights"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="carrid"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="carrname"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="carrname"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="fldate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityfrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityto"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="planetype"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="price"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Apply 10% Discount"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.applyDiscount(com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001.mainType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="carrid"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="connid"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="fldate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="carrname"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="planetype"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="PriceCriticality"/>
+                            <PropertyValue Property="Value" Path="price"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityfrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="cityto"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Total"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldWithIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" String="Airline"/>
+                            <PropertyValue Property="Action" String="displayFactSheet"/>
+                            <PropertyValue Property="Value" Path="carrname"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>carrname</PropertyPath>
+                        <PropertyPath>cityfrom</PropertyPath>
+                        <PropertyPath>cityto</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/main">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="true"/>
+                        <PropertyValue Property="UnsupportedExpressions" EnumMember="SAP__capabilities.SearchExpressions/AND SAP__capabilities.SearchExpressions/OR SAP__capabilities.SearchExpressions/NOT SAP__capabilities.SearchExpressions/group SAP__capabilities.SearchExpressions/phrase"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                                <PropertyPath>__FieldControl</PropertyPath>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                                <PropertyPath>__FieldControl</PropertyPath>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Path="__EntityControl/Deletable"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Path="__EntityControl/Updatable"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/PriceCriticality">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/PriceFieldControl">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/PriceCriticality">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/fldate">
                 <Annotation Term="SAP__common.Label" String="Flight Date"/>
                 <Annotation Term="SAP__common.Heading" String="Date"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Flight date"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/CurrencyCode">
+            <Annotations Target="SAP__self.userType/carrname">
+                <Annotation Term="SAP__common.Label" String="Airline"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Airline name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/currency">
                 <Annotation Term="SAP__common.Label" String="Airline Currency"/>
                 <Annotation Term="SAP__common.Heading" String="Curr."/>
                 <Annotation Term="SAP__common.QuickInfo" String="Local currency of airline"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/SeatsMax">
+            <Annotations Target="SAP__self.userType/seatsmax">
                 <Annotation Term="SAP__common.Label" String="Max. Capacity Econ."/>
                 <Annotation Term="SAP__common.Heading" String="Capacity in Economy Class"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in Economy Class"/>
             </Annotations>
-            <Annotations Target="SAP__self.FlightType/SeatsOcc">
+            <Annotations Target="SAP__self.userType/seatsocc">
                 <Annotation Term="SAP__common.Label" String="Occupied econ."/>
                 <Annotation Term="SAP__common.Heading" String="Occupied economy class"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in economy class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/url">
+                <Annotation Term="SAP__common.Label" String="URL"/>
+                <Annotation Term="SAP__common.Heading" String="Airline URL"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Airline URL"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/seatsmax_b">
+                <Annotation Term="SAP__common.Label" String="Max. Capacity Bus."/>
+                <Annotation Term="SAP__common.Heading" String="Capacity Business Class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in Business Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/seatsocc_b">
+                <Annotation Term="SAP__common.Label" String="Occupied bus."/>
+                <Annotation Term="SAP__common.Heading" String="Occupied business class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in business class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/seatsmax_f">
+                <Annotation Term="SAP__common.Label" String="Max. Capacity 1st"/>
+                <Annotation Term="SAP__common.Heading" String="Capacity in First Class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in First Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.userType/seatsocc_f">
+                <Annotation Term="SAP__common.Label" String="Occupied 1st"/>
+                <Annotation Term="SAP__common.Heading" String="Occupied in first class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in first class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/fldate">
+                <Annotation Term="SAP__common.Label" String="Flight Date"/>
+                <Annotation Term="SAP__common.Heading" String="Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Flight date"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/carrname">
+                <Annotation Term="SAP__common.Label" String="Airline"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Airline name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/currency">
+                <Annotation Term="SAP__common.Label" String="Airline Currency"/>
+                <Annotation Term="SAP__common.Heading" String="Curr."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Local currency of airline"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsmax">
+                <Annotation Term="SAP__common.Label" String="Max. Capacity Econ."/>
+                <Annotation Term="SAP__common.Heading" String="Capacity in Economy Class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in Economy Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsocc">
+                <Annotation Term="SAP__common.Label" String="Occupied econ."/>
+                <Annotation Term="SAP__common.Heading" String="Occupied economy class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in economy class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/url">
+                <Annotation Term="SAP__common.Label" String="URL"/>
+                <Annotation Term="SAP__common.Heading" String="Airline URL"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Airline URL"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsmax_b">
+                <Annotation Term="SAP__common.Label" String="Max. Capacity Bus."/>
+                <Annotation Term="SAP__common.Heading" String="Capacity Business Class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in Business Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsocc_b">
+                <Annotation Term="SAP__common.Label" String="Occupied bus."/>
+                <Annotation Term="SAP__common.Heading" String="Occupied business class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in business class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsmax_f">
+                <Annotation Term="SAP__common.Label" String="Max. Capacity 1st"/>
+                <Annotation Term="SAP__common.Heading" String="Capacity in First Class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Capacity in First Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.mainType/seatsocc_f">
+                <Annotation Term="SAP__common.Label" String="Occupied 1st"/>
+                <Annotation Term="SAP__common.Heading" String="Occupied in first class"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Occupied seats in first class"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>

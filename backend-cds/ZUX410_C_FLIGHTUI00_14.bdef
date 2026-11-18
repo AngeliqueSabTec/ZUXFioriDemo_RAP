@@ -10,8 +10,16 @@
 //   draft action Discard;
 //   draft action Resume;
 //   draft determine action Prepare;
+//
+// Changes 2026-11-18 (discount feature):
+//   - "with additional save": applyDiscount no longer changes SFLIGHT-PRICE;
+//     it buffers a row for ZUX410_FLT_DISC which the saver writes in
+//     save_modified (direct DB writes in an action are not allowed in RAP)
+//   - DiscountedPrice / DiscountPercent / DiscountedPriceText are read-only
+//     (they come from ZUX410_FLT_DISC via association _Disc)
+//   - Exposed on the projection via ZUX410_UI_FLIGHTUI00_14.bdef
 
-managed implementation in class zbp_ux410_c_flightui00_14 unique;
+managed with additional save implementation in class zbp_ux410_c_flightui00_14 unique;
 strict;
 
 define behavior for ZUX410_C_FLIGHTUI00_14 alias Flight
@@ -25,6 +33,7 @@ authorization master ( instance )
 
   association _Bookings { create; }
 
+  field ( readonly ) DiscountedPrice, DiscountPercent, DiscountedPriceText;
   field ( features : instance ) Price;
 
   action ( features : instance ) applyDiscount result [1] $self;

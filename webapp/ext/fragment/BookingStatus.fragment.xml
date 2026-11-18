@@ -1,12 +1,13 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
-  <MessageStrip id="_IDGenMessageStrip"
-    text="This flight is fully booked. Price is locked until seats become available."
-    type="Warning"
-    showIcon="true"
-    visible="{= ${SeatsAvailable} === 0}" />
-
-  <macros:Field
-  id="seatsAvailableCustomField"
-  metaPath="@com.sap.vocabularies.UI.v1.FieldGroup#FlightDetails/Data/0" />
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+  <VBox id="_IDGenBookingStatusBox">
+    <MessageStrip id="_IDGenMessageStrip"
+      text="This flight is fully booked. Price is locked until seats become available."
+      type="Warning"
+      showIcon="true"
+      visible="{= ${seatsocc} >= ${seatsmax} }" />
+    <ObjectStatus id="seatsAvailableStatus"
+      title="Seats Available"
+      text="{= ${seatsmax} - ${seatsocc} } of {seatsmax}"
+      state="{= ${seatsocc} >= ${seatsmax} ? 'Error' : 'Success' }" />
+  </VBox>
 </core:FragmentDefinition>
-

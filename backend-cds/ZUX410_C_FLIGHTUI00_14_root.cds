@@ -5,6 +5,13 @@
 *&              in the S4D system today. It differs from the older
 *&              ZUX410_C_FLIGHTUI00_14.cds already in this repo/root,
 *&              which appears to be an earlier/different demo snapshot.
+*&
+*& Changes 2026-11-18 (discount feature):
+*&   - association _Disc to ZUX410_FLT_DISC (applied discounts)
+*&   - new fields DiscountedPrice, DiscountPercent, DiscountedPriceText
+*&   - PriceCriticality: < 450 red(1), 450-1000 orange(2), > 1000 green(3)
+*&   - SFLIGHT-PRICE is never changed by the discount; the original
+*&     price stays in sf.price, the discounted one lives in _Disc
 *&---------------------------------------------------------------------*
 
 @AccessControl.authorizationCheck: #CHECK
@@ -26,6 +33,11 @@ define root view entity ZUX410_C_FLIGHTUI00_14
   association to spfli as sp
     on  sf.carrid = sp.carrid
     and sf.connid = sp.connid
+
+  association [0..1] to zux410_flt_disc as _Disc
+    on  _Disc.carrid = sf.carrid
+    and _Disc.connid = sf.connid
+    and _Disc.fldate = sf.fldate
 
   composition [0..*] of ZUX410_C_BOOKINGUI00 as _Bookings
 {
@@ -88,11 +100,33 @@ define root view entity ZUX410_C_FLIGHTUI00_14
 
   sf.currency,
 
+  /* ---- Discount (written by action applyDiscount via the saver) ---- */
+
+  @Semantics.amount.currencyCode: 'currency'
+  _Disc.disc_price   as DiscountedPrice,
+
+  _Disc.discount_pct as DiscountPercent,
+
+  // Applied           -> "861.90 EUR"
+  // < 450 or past     -> "Not eligible"
+  // > 1000            -> "Eligible (15%)"
+  // 450 - 1000        -> "Eligible (10%)"
+  cast( case
+          when _Disc.disc_price is not null
+            then concat_with_space(
+                   ltrim( cast( cast( _Disc.disc_price as abap.dec(15,2) ) as abap.char(20) ), ' ' ),
+                   sf.currency, 1 )
+          when sf.price < 450 or sf.fldate < $session.system_date
+            then 'Not eligible'
+          when sf.price > 1000
+            then 'Eligible (15%)'
+          else 'Eligible (10%)'
+        end as abap.char(30) ) as DiscountedPriceText,
+
   @UI.hidden: true
-  case
-    when sf.price <= 500  then 3
-    when sf.price <= 1000 then 2
-    else 1
+  case when sf.price <  450  then 1   /* red    */
+       when sf.price <= 1000 then 2   /* orange */
+       else 3                         /* green  */
   end as PriceCriticality,
 
   @UI.hidden: true

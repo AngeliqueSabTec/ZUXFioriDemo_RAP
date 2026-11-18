@@ -105,15 +105,15 @@ sap.ui.define([
             oDialogModel.setProperty("/newFlight/Fldate", sIsoDate);
             oNavContainer.to(oFlightsPage);
 
-            var oFilter = new Filter("Fldate", FilterOperator.EQ, sIsoDate);
-            var oListBinding = oModel.bindList("/Flight", undefined, [], [oFilter]);
+            var oFilter = new Filter("fldate", FilterOperator.EQ, sIsoDate);
+            var oListBinding = oModel.bindList("/user", undefined, [], [oFilter]);
 
             oListBinding.requestContexts(0, 100).then(function (aContexts) {
                 var aFlights = aContexts.map(function (oContext) {
                     var oData = oContext.getObject();
-                    var iMax = oData.SeatsMax || 0;
-                    var iOcc = oData.SeatsOcc || 0;
-                    var iAvailable = typeof oData.SeatsAvailable === "number" ? oData.SeatsAvailable : (iMax - iOcc);
+                    var iMax = oData.seatsmax || 0;
+                    var iOcc = oData.seatsocc || 0;
+                    var iAvailable = iMax - iOcc;
                     oData.SeatsAvailableText = getText("openBookingsSeatsAvailable", [iAvailable, iMax]);
                     // kept alongside the plain data so the row can navigate back to its real context
                     oData.__context = oContext;
@@ -154,19 +154,19 @@ sap.ui.define([
 
             oDialogModel.setProperty("/busy", true);
 
-            var oListBinding = oModel.bindList("/Flight");
+            var oListBinding = oModel.bindList("/user");
             var oNewContext;
 
             try {
                 oNewContext = oListBinding.create({
-                    Carrid: String(oNewFlight.Carrid).toUpperCase(),
-                    Connid: String(oNewFlight.Connid),
-                    Fldate: oNewFlight.Fldate,
-                    Planetype: oNewFlight.Planetype,
-                    Price: parseFloat(oNewFlight.Price) || 0,
-                    CurrencyCode: oNewFlight.CurrencyCode,
-                    SeatsMax: parseInt(oNewFlight.SeatsMax, 10) || 0,
-                    SeatsOcc: 0
+                    carrid: String(oNewFlight.Carrid).toUpperCase(),
+                    connid: String(oNewFlight.Connid),
+                    fldate: oNewFlight.Fldate,
+                    planetype: oNewFlight.Planetype,
+                    price: parseFloat(oNewFlight.Price) || 0,
+                    currency: oNewFlight.CurrencyCode,
+                    seatsmax: parseInt(oNewFlight.SeatsMax, 10) || 0,
+                    seatsocc: 0
                 });
             } catch (oError) {
                 oDialogModel.setProperty("/busy", false);

@@ -2,56 +2,26 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
     </edmx:Reference>
-    <edmx:Reference Uri="/sap/opu/odata4/sap/zui_flight_s4_v4/srvd/sap/zui_flight_s4/0001/$metadata">
-        <edmx:Include Namespace="com.sap.gateway.srvd.zui_flight_s4.v0001" Alias="SAP__self"/>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata4/sap/zux410_sb_flightui00_14/srvd/sap/zux410_sd_flightui00_14/0001/$metadata">
+        <edmx:Include Namespace="com.sap.gateway.srvd.zux410_sd_flightui00_14.v0001" Alias="SAP__self"/>
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
-            <Annotations Target="SAP__self.FlightType">
-                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
-                    <Record Type="UI.FieldGroupType">
-                        <PropertyValue Property="Data">
+            <!-- After applyDiscount on the object page, re-read the discount fields of the same flight -->
+            <Annotations Target="SAP__self.applyDiscount(SAP__self.userType)">
+                <Annotation Term="Common.SideEffects">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="TargetProperties">
                             <Collection>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Carrid"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Connid"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Fldate"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Price"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CurrencyCode"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Planetype"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="SeatsMax"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="SeatsOcc"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="SeatsAvailable"/>
-                                    <PropertyValue Property="Value" Path="SeatsAvailable"/>
-                                </Record>
+                                <String>_it/DiscountedPriceText</String>
+                                <String>_it/DiscountedPrice</String>
+                                <String>_it/DiscountPercent</String>
                             </Collection>
                         </PropertyValue>
                     </Record>
-                </Annotation>
-                <Annotation Term="UI.Facets">
-                    <Collection>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
-                            <PropertyValue Property="Label" String="General Information"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup"/>
-                        </Record>
-                    </Collection>
                 </Annotation>
             </Annotations>
         </Schema>

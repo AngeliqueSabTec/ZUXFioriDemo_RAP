@@ -17,7 +17,7 @@ sap.ui.define(['sap/fe/test/ObjectPage', 'sap/ui/test/actions/Press'], function(
         {
             appId: 'zflights4.flights4',
             componentId: 'FlightObjectPage',
-            contextPath: '/Flight'
+            contextPath: '/user'
         },
         CustomPageDefinitions
     );
