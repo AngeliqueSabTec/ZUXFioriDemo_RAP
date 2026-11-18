@@ -1,0 +1,88 @@
+// Synced from Eclipse/ADT on: 2026-11-18
+// Note: draft was intentionally removed after repeated activation
+// failures ("entity is not activated for drafts"). The draft table
+// (ZUX410_D_FLIGHTU.tabl.cds) and the draft-related clauses are kept
+// as comments below in case draft is revisited later.
+//
+//   draft table zux410_d_flightu
+//   draft action Edit;
+//   draft action Activate;
+//   draft action Discard;
+//   draft action Resume;
+//   draft determine action Prepare;
+
+managed implementation in class zbp_ux410_c_flightui00_14 unique;
+strict;
+
+define behavior for ZUX410_C_FLIGHTUI00_14 alias Flight
+persistent table sflight
+lock master
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  association _Bookings { create; }
+
+  field ( features : instance ) Price;
+
+  action ( features : instance ) applyDiscount result [1] $self;
+
+  mapping for sflight
+  {
+    carrid     = carrid;
+    connid     = connid;
+    fldate     = fldate;
+    price      = price;
+    currency   = currency;
+    planetype  = planetype;
+    seatsmax   = seatsmax;
+    seatsocc   = seatsocc;
+    seatsmax_b = seatsmax_b;
+    seatsocc_b = seatsocc_b;
+    seatsmax_f = seatsmax_f;
+    seatsocc_f = seatsocc_f;
+    paymentsum = paymentsum;
+  }
+}
+
+define behavior for ZUX410_C_BOOKINGUI00 alias Booking
+persistent table sbook
+lock dependent by _Flight
+authorization dependent by _Flight
+{
+  update;
+  delete;
+
+  field ( readonly ) carrid, connid, fldate, bookid;
+
+  association _Flight;
+
+  mapping for sbook
+  {
+    carrid     = carrid;
+    connid     = connid;
+    fldate     = fldate;
+    bookid     = bookid;
+    customid   = customid;
+    custtype   = custtype;
+    smoker     = smoker;
+    luggweight = luggweight;
+    wunit      = wunit;
+    invoice    = invoice;
+    class      = class;
+    forcuram   = forcuram;
+    forcurkey  = forcurkey;
+    loccuram   = loccuram;
+    loccurkey  = loccurkey;
+    order_date = order_date;
+    counter    = counter;
+    agencynum  = agencynum;
+    cancelled  = cancelled;
+    reserved   = reserved;
+    passname   = passname;
+    passform   = passform;
+    passbirth  = passbirth;
+  }
+}
